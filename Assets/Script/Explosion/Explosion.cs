@@ -1,36 +1,41 @@
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class Explosion : AbstractExplosion
 {
-    private Audio _audio;
-    [SerializeField] private float _power;
-    [SerializeField] private float _radiys;
-
-    private void Awake()
-    {
-    
-            _audio = GetComponentInChildren<Audio>();
-        
-    }
-
-
-    public void Boom(GameObject Enemy)
+    [SerializeField] private int _bonusScore = 0;
+    protected override void Boom(GameObject Enemy)
     {
         float distance = Vector3.Distance(transform.position, Enemy.transform.position);
-        if (distance < _radiys)
+        if (distance < Radiys)
         {
             Vector3 direction = Enemy.transform.position - transform.position;
-            Enemy.GetComponent<Rigidbody>().AddForce(direction.normalized * _power * (_radiys - distance));
-          
-                _audio?.PlaySound();
-            
+            Enemy.GetComponent<Rigidbody>().AddForce(direction.normalized * Power * (Radiys - distance));
+
+            Audio?.PlaySound();
         }
     }
-            
+
+    protected override void PostBoom(GameObject Enemy)
+    {
+        Rigidbody rigidbody = Enemy.GetComponent<Rigidbody>();
+
+        rigidbody.mass-= 0.01f;
+    }
+
+
     private void OnCollisionEnter(Collision collision)
     {
         Boom(collision.gameObject);
+
+        for (int i = 0; i < _bonusScore; i++)
+        {
+            Score.AddCount();
+        }   
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        PostBoom(collision.gameObject);
+    }
 
 }

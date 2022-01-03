@@ -1,17 +1,21 @@
 using UnityEngine;
 
-public class ForwardExplosion : MonoBehaviour
+public class ForwardExplosion : AbstractExplosion
 {
-    [SerializeField]
-    float _power = 10f;
 
-    private void OnTriggerStay(Collider other)
+    protected override void Boom(GameObject Enemy)
     {
-
-       Rigidbody rigidbody = other.gameObject.GetComponent<Rigidbody>();
-            rigidbody.AddForce(transform.forward * _power, ForceMode.Impulse);
-            print("e");
-     
+        Rigidbody rigidbody = Enemy.GetComponent<Rigidbody>();
+        rigidbody.AddForce(transform.forward * Power, ForceMode.Impulse);
     }
 
+    protected override void PostBoom(GameObject Enemy)
+    {
+        return;
+    }
+
+     void OnTriggerStay(Collider other)
+    {
+        Boom(other.gameObject);
+    }
 }

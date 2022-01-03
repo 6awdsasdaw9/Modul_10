@@ -41,9 +41,3 @@ public class ScoreInfo : ScriptableObject
     }
     private void Raise()=> scoreEvent?.Invoke();
 }
-
-
-
-
-
-

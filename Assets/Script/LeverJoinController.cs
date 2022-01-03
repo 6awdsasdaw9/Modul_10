@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LeverJoinController : MonoBehaviour
 {
-    [SerializeField] HingeJoint _hingeJoint;
+    [SerializeField] private HingeJoint _hingeJoint;
+    [SerializeField] private KeyCode _key;
     private JointSpring _jointSpring_Down;
     private JointSpring _jointSpring_Up;
 
@@ -14,20 +15,18 @@ public class LeverJoinController : MonoBehaviour
         _jointSpring_Up = _hingeJoint.spring;
         _jointSpring_Down.targetPosition = 20f;
         _jointSpring_Up.targetPosition = -30f;
-
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(_key))
         {
             _hingeJoint.spring = _jointSpring_Up;
         }
-       if(Input.GetKeyUp(KeyCode.X))
+        if (Input.GetKeyUp(_key))
         {
             _hingeJoint.spring = _jointSpring_Down;
         }
-      
-
     }
+
 }
