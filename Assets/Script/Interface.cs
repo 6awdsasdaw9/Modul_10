@@ -11,6 +11,5 @@ public class Interface : MonoBehaviour
         InfoUpdate();
        _score.ScoreEvent += InfoUpdate;
     }
-   
     public void InfoUpdate() =>_textscore.text = ($"Score: {_score.GetCount}");
-}
+} 

@@ -5,8 +5,8 @@ public class ForwardExplosion : AbstractExplosion
 
     protected override void Boom(GameObject Enemy)
     {
-        Rigidbody rigidbody = Enemy.GetComponent<Rigidbody>();
-        rigidbody.AddForce(transform.forward * Power, ForceMode.Impulse);
+        Rigidbody rigidbody = Enemy?.GetComponent<Rigidbody>();
+        rigidbody?.AddForce(transform.forward * Power, ForceMode.Impulse);
     }
 
     protected override void PostBoom(GameObject Enemy)
@@ -14,8 +14,10 @@ public class ForwardExplosion : AbstractExplosion
         return;
     }
 
-     void OnTriggerStay(Collider other)
+
+    
+    void OnTriggerStay(Collider other)
     {
-        Boom(other.gameObject);
+        Boom(other?.gameObject);
     }
 }

@@ -3,19 +3,23 @@ using UnityEngine;
 public class PlayerBall : MonoBehaviour
 {
     private Rigidbody _rigidBody;
+    private float _defaulMass;
 
+
+    public Rigidbody Rigidbody { get =>_rigidBody; }
 
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
+        
      //   ScoreInfo.ScoreEvent += MassDown();
     }
 
     
 
-    private void MassDown()
+    public void MassDown()
     {
-        _rigidBody.mass -= 0.1f;
+      if(_rigidBody.mass > 3) _rigidBody.mass -= 0.1f;
     }
 
 }
