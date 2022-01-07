@@ -15,6 +15,8 @@ public class LeverJoinController : MonoBehaviour
         _jointSpring_Up = _hingeJoint.spring;
         _jointSpring_Down.targetPosition = 20f;
         _jointSpring_Up.targetPosition = -30f;
+        _hingeJoint.spring = _jointSpring_Down;
+
     }
 
     void Update()
