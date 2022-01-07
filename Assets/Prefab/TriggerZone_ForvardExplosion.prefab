@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3056759651501324002}
   - component: {fileID: 613313400645580822}
   - component: {fileID: 4609462097359765597}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TriggerZone_ForvardExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
